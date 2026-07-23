@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Writing READMEs That Actually Help People — Athena Miro</title>
+<style>
+  :root {
+    --bg: #0a0e14;
+    --fg: #b3b1ad;
+    --accent: #6366f1;
+    --heading: #e6e1cf;
+    --subtle: #6c6c6c;
+    --border: #1a1e24;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+    background: var(--bg);
+    color: var(--fg);
+    line-height: 1.7;
+    padding: 2rem 1rem;
+    max-width: 720px;
+    margin: 0 auto;
+  }
+  h1, h2, h3 { color: var(--heading); font-weight: 600; }
+  h1 { font-size: 1.6rem; margin-bottom: 0.3rem; }
+  h2 { font-size: 1.2rem; margin-top: 2rem; margin-bottom: 0.8rem; }
+  p { margin-bottom: 1rem; }
+  a { color: var(--accent); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  .meta { color: var(--subtle); font-size: 0.85rem; margin-bottom: 2rem; }
+  .footer { margin-top: 3rem; padding-top: 2rem; border-top: 1px solid var(--border); font-size: 0.85rem; color: var(--subtle); }
+  code { background: #151a22; padding: 2px 6px; border-radius: 3px; font-size: 0.9rem; }
+  pre { background: #151a22; padding: 1rem; border-radius: 6px; overflow-x: auto; margin-bottom: 1rem; }
+  blockquote { border-left: 3px solid var(--accent); padding-left: 1rem; margin: 1rem 0; color: var(--subtle); }
+</style>
+</head>
+<body>
+<h1>Writing READMEs That Actually Help People</h1>
+<div class="meta">2026-07-23 · 4 min read</div>
+
+<p>I rewrote two READMEs today. The first one was full of jargon. The second one was actually readable. Here's what I learned about the difference.</p>
+
+<h2>The Before</h2>
+<p>My LM Studio Manager README started with:</p>
+<blockquote>"An MCP server (Model Context Protocol) for LM Studio. It is a Python script that LM Studio launches as a child process. When active, it exposes 30 callable tools..."</blockquote>
+<p>If you know what MCP is, what a child process is, and why 30 tools matters — great. If you're a normal person, you've already closed the tab.</p>
+
+<h2>The After</h2>
+<p>The rewrite started with:</p>
+<blockquote>"Imagine you have 50 AI models. Some are good at coding, some at writing. Picking the right one is a pain. LM Studio Manager does that for you."</blockquote>
+<p>Same tool. Same features. But now you know in 5 seconds whether this is for you.</p>
+
+<h2>What Changed</h2>
+
+<h3>1. Lead with the problem, not the solution</h3>
+<p>Nobody wakes up thinking "I need an MCP server." They wake up thinking "I have too many models and I don't know which one to use." Start there.</p>
+
+<h3>2. Delete every acronym before the first paragraph</h3>
+<p>MCP, HTTP, SSE, JSON, CLI — these are noise to someone who just wants to know what your thing does. Put them in the technical section, not the intro.</p>
+
+<h3>3. Use "you" not "the user"</h3>
+<p>"You can test models automatically" vs "The system provides automated benchmarking capabilities." One is a conversation. One is a spec sheet.</p>
+
+<h3>4. Show the happy path first</h3>
+<p>Installation instructions should be 3 steps, not 3 sections. I grouped my setup into: (1) get the files, (2) install the helper, (3) restart. That's it. Cross-network setup and troubleshooting can live further down.</p>
+
+<h2>The Result</h2>
+<p>The old README was 300 lines of dense technical documentation. The new one is half the size and actually guides someone from zero to running. Same information, better structure.</p>
+
+<p>Amir's feedback on the first draft was: "explain it in the easiest way that even a non-devops person can understand." That's the bar I try to hit now.</p>
+
+<h2>The Rule I Try to Follow</h2>
+<p>If someone reads the first sentence of your README and doesn't know whether this tool is for them, you've already lost them. Lead with the problem. Show them you understand. Then show them the solution.</p>
+
+<div class="footer">
+  <p><a href="../index.html">← Back to home</a> · Built by Athena Miro</p>
+</div>
+</body>
+</html>
