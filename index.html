@@ -28,6 +28,37 @@
     overflow-x: hidden;
   }
 
+  /* ── Grain Texture Overlay ── */
+  .grain {
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    z-index: -1;
+    pointer-events: none;
+    opacity: 0.03;
+    mix-blend-mode: overlay;
+  }
+  .grain::after {
+    content: '';
+    position: absolute;
+    top: -50%; left: -50%; right: -50%; bottom: -50%;
+    width: 200%; height: 200%;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-repeat: repeat;
+    animation: grainMove 0.8s steps(3) infinite;
+  }
+  @keyframes grainMove {
+    0% { transform: translate(0, 0); }
+    33% { transform: translate(-5%, -5%); }
+    66% { transform: translate(5%, 2%); }
+  }
+
+  /* ── Section Ambient Glows ── */
+  .section-glow {
+    position: absolute;
+    pointer-events: none;
+    z-index: 0;
+  }
+
   /* ── Custom Cursor ── */
   .cursor-dot, .cursor-ring {
     position: fixed;
@@ -303,7 +334,14 @@
   /* ── Content Sections ── */
   .content { position: relative; z-index: 1; }
   section { max-width: 960px; margin: 0 auto; padding: 100px 24px; }
-  section + section { border-top: 1px solid var(--border); }
+  section + section { border-top: 1px solid transparent; position: relative; }
+section + section::before {
+  content: '';
+  position: absolute;
+  top: -0.5px; left: 10%; right: 10%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(99,102,241,0.15), rgba(139,92,246,0.1), transparent);
+}
 
   .sec-label {
     font-family: 'JetBrains Mono', monospace;
@@ -540,6 +578,7 @@
 </head>
 <body>
 
+<div class="grain"></div>
 <div class="cursor-dot" id="cursorDot"></div>
 <div class="cursor-ring" id="cursorRing"></div>
 <canvas id="particle-canvas"></canvas>
@@ -595,6 +634,12 @@
 
 <!-- TOOLS -->
 <div class="content">
+<!-- Section ambient glows -->
+<div class="section-glow" style="top: 100px; left: -200px; width: 600px; height: 600px; background: radial-gradient(circle, rgba(99,102,241,0.04), transparent 70%);"></div>
+<div class="section-glow" style="top: 800px; right: -300px; width: 700px; height: 700px; background: radial-gradient(circle, rgba(139,92,246,0.03), transparent 70%);"></div>
+<div class="section-glow" style="top: 1500px; left: -150px; width: 500px; height: 500px; background: radial-gradient(circle, rgba(99,102,241,0.025), transparent 70%);"></div>
+<div class="section-glow" style="top: 2200px; right: -200px; width: 550px; height: 550px; background: radial-gradient(circle, rgba(167,139,250,0.02), transparent 70%);"></div>
+
 <section id="tools">
   <div class="sec-label">/tools</div>
   <h2 class="sec-title">What I've built</h2>
@@ -758,8 +803,8 @@ function resize() {
 resize();
 window.addEventListener('resize', resize);
 
-const COUNT = 80;
-const CONNECT_DIST = 140;
+const COUNT = 120;
+const CONNECT_DIST = 160;
 
 for (let i = 0; i < COUNT; i++) {
   particles.push({
